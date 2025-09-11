@@ -50,3 +50,44 @@ class Client:
                 raise EmailNotValidError
         except EmailNotValidError:
             self.__email_address = f"{email_address}@pixell-river.com"
+
+
+    @property
+    def client_number(self) -> int:
+        """
+        Accessor for the client number attribute.
+
+        Returns:
+            int: Number of the client.
+        """
+        return self.__client_number
+
+    @property
+    def first_name(self) -> str:
+        """
+        Accessor for the first name attribute.
+
+        Returns:
+            str: Client's first name.
+        """
+        return self.__first_name
+
+    @property
+    def last_name(self) -> str:
+        """
+        Accessor for the last name attribute.
+
+        Returns:
+            str: Client's last name.
+        """
+        return self.__last_name
+
+    @property
+    def email_address(self) -> str:
+        """
+        Accessor for the email address attribute.
+
+        Returns:
+            str: Client's email address.
+        """
+        return self.__email_address
