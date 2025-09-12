@@ -45,7 +45,9 @@ class TestClient(unittest.TestCase):
         client = Client(1234, "Amanda", "Makino", "amandadm")
 
         # Assert
-        self.assertEqual(client.email_address, "amandadm@pixell-river.com")
+        self.assertEqual(
+            client.email_address, "amandadm@pixell-river.com"
+            )
 
     def test_client_number_accessor_returns_client_number(self):
         self.assertEqual(1234, self.client.client_number)

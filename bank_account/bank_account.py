@@ -7,7 +7,7 @@ __version__ = "1.0.0"
 
 class BankAccount:
     """
-    BankAccount class: 
+    BankAccount class: Maintains bank account data.
     """
     def __init__(self, account_number: int, client_number: int,
                  balance: float):
@@ -44,7 +44,7 @@ class BankAccount:
         else:
             try:
                 self.__balance = float(balance)
-            except (ValueError):
+            except ValueError:
                 self.__balance = 0.0
 
     @property
@@ -116,10 +116,14 @@ class BankAccount:
         try:
             amount = float(amount)
         except ValueError:
-            raise ValueError(f"Deposit amount: {amount} must be numeric.")
+            raise ValueError(
+                f"Deposit amount: {amount} must be numeric."
+                )
 
         if amount <= 0:
-            raise ValueError(f"Deposit amount: ${amount:.2f} must be positive.")
+            raise ValueError(
+                f"Deposit amount: ${amount:.2f} must be positive."
+                )
 
         self.update_balance(amount)
 
@@ -140,14 +144,19 @@ class BankAccount:
         try:
             amount = float(amount)
         except ValueError:
-            raise ValueError(f"Withdraw amount: {amount} must be numeric.")
+            raise ValueError(
+                f"Withdraw amount: {amount} must be numeric."
+                )
 
         if amount <= 0:
-            raise ValueError(f"Withdraw amount: ${amount:.2f} must be positive.")
+            raise ValueError(
+                f"Withdraw amount: ${amount:.2f} must be positive."
+                )
 
         if amount > self.__balance:
             raise ValueError(
-                f"Withdraw amount: ${amount:.2f} must not exceed the account balance: ${self.__balance:.2f}"
+                f"Withdraw amount: ${amount:.2f} must not exceed the "
+                f"account balance: ${self.__balance:.2f}"
             )
 
         self.update_balance(-amount)
@@ -161,4 +170,7 @@ class BankAccount:
             str: The course instance formatted as a string.
         """
 
-        return f"Account Number: {self.__account_number} Balance: ${self.__balance:.2f}"
+        return (
+            f"Account Number: {self.__account_number} "
+            f"Balance: ${self.__balance:.2f}"
+            )

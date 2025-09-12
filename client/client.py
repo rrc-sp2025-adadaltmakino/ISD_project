@@ -8,7 +8,7 @@ from email_validator import validate_email, EmailNotValidError
 
 class Client:
     """
-    Client class: 
+    Client class: Maintains client data.
     """
     def __init__(self, client_number: int, first_name: str, last_name:
                  str, email_address: str):
@@ -20,7 +20,8 @@ class Client:
             client number.
             first_name(str): A string value the client's first name.
             last_name(str): A string value the client's last name.
-            email_address(str):  A string value the client's email address.
+            email_address(str):  A string value the client's email 
+            address.
 
         Raises:
             ValueError: When client number is not an integer, when
