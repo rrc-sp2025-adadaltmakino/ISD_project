@@ -100,6 +100,6 @@ class Client:
             str: The course instance formatted as a string.
         """
         return (
-            f"{self.__last_name}, {self.__first_name}"
+            f"{self.__last_name}, {self.__first_name} "
             + f"[{self.__client_number}] - {self.__email_address}"
         )
