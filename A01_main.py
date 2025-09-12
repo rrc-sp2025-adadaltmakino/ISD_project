@@ -4,7 +4,7 @@ the BankAccount and Client classes.
 """
 __author__ = "ACE Faculty"
 __version__ = "1.0.0"
-__credits__ = ""
+__credits__ = "Amanda Dadalt Makino"
 
 from bank_account.bank_account import BankAccount
 from client.client import Client
@@ -19,13 +19,20 @@ def main():
 
     # 1. Code a statement which creates a valid instance of the Client class.
     # Use your own unique valid values for the inputs to the class.
-
-
+    try:
+        client = Client(1234, "Amanda", "Makino",
+                            "amandadm@pixell-river.com")
+        print(client)
+    except ValueError as e:
+        print(e)
 
 
     # 2. Declare a BankAccount object with an initial value of None.
-
- 
+    try:
+        bank_account = BankAccount(1234, 4567, 0.0)
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
     # 3. Using the bank_account object declared in step 2, code a statement 
     # to instantiate the BankAccount object.
@@ -33,8 +40,11 @@ def main():
     # Use the client_number used to create the Client object in step 1 for the 
     # BankAccount's client_number. 
     # Use a floating point value for the balance. 
-    
-
+    try:
+        bank_account = BankAccount(4000, client.client_number, 2500.00)
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
 
     # 4. Code a statement which creates an instance of the BankAccount class.
@@ -42,43 +52,77 @@ def main():
     # Use the client_number used to create the Client object in step 1 for the 
     # BankAccount's client_number. 
     # Use an INVALID value (non-float) for the balance. 
-
-
+    try:
+        invalid_bank_account = BankAccount(5000, client.client_number, "number")
+        print(invalid_bank_account)
+    except ValueError as e:
+        print(e)
 
     # 5. Code a statement which prints the Client instance created in step 1. 
     # Code a statement which prints the BankAccount instance created in step 3.
-
-
+    try:
+        print(client)
+    except ValueError as e:
+        print(e)
+ 
+    try:
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
 
     # 6. Attempt to deposit a non-numeric value into the BankAccount create in step 3. 
-
+    try:
+        bank_account.deposit("number")
+    except ValueError as e:
+        print(e)
 
 
     # 7. Attempt to deposit a negative value into the BankAccount create in step 3. 
-
+    try:
+        bank_account.deposit(-500)
+    except ValueError as e:
+        print(e)  
 
 
     # 8. Attempt to withdraw a valid amount of your choice from the BankAccount create in step 3. 
-
+    try:
+        bank_account.withdraw(50)
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
 
     # 9. Attempt to withdraw a non-numeric value from the BankAccount create in step 3. 
-
+    try:
+        bank_account.withdraw("number")
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
 
     # 10. Attempt to withdraw a negative value from the BankAccount create in step 3. 
-
+    try:
+        bank_account.withdraw(-50)
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
 
     # 11. Attempt to withdraw a value from the BankAccount create in step 3 which 
     # exceeds the current balance of the account. 
- 
- 
+    try:
+        bank_account.withdraw(50000)
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
     # 12. Code a statement which prints the BankAccount instance created in step 3. 
+    try:
+        print(bank_account)
+    except ValueError as e:
+        print(e)
 
-  
 
 
 if __name__ == "__main__":
