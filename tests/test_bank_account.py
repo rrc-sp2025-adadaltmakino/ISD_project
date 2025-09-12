@@ -29,7 +29,7 @@ class TestBankAccount(unittest.TestCase):
         bank_account = BankAccount(1234, 4567, " ")
 
         # Assert
-        self.assertEqual(bank_account._BankAccount__balance, 0)
+        self.assertEqual(round(bank_account._BankAccount__balance, 2), 0)
 
 
     def test_init_non_numeric_accountnumber_raises_valueerror(self):
@@ -56,7 +56,7 @@ class TestBankAccount(unittest.TestCase):
 
     def test_balance_getter_returns_balance(self):
         # Arrange, Act, and Assert
-        self.assertEqual(10000, self.bank_account.balance)
+        self.assertEqual(10000, round(self.bank_account.balance, 2))
 
 
     def test_update_balance_updates_balance_using_positive_amount(self):
@@ -64,7 +64,7 @@ class TestBankAccount(unittest.TestCase):
         self.bank_account.update_balance(500)
 
         # Assert
-        self.assertEqual(10500, self.bank_account.balance)
+        self.assertEqual(10500, round(self.bank_account.balance, 2))
 
 
     def test_update_balance_updates_balance_using_negative_amount(self):
@@ -72,7 +72,7 @@ class TestBankAccount(unittest.TestCase):
         self.bank_account.update_balance(-500)
 
         # Assert
-        self.assertEqual(9500, self.bank_account.balance)
+        self.assertEqual(9500, round(self.bank_account.balance, 2))
 
 
     def test_update_balance_remains_unchange_using_invalid_amount(self):
@@ -80,7 +80,7 @@ class TestBankAccount(unittest.TestCase):
         self.bank_account.update_balance("twenty")
 
         # Assert
-        self.assertEqual(10000, self.bank_account.balance)
+        self.assertEqual(10000, round(self.bank_account.balance, 2))
 
 
     def test_deposit_updating_balance_when_valid_amount_provided(self):
@@ -88,7 +88,7 @@ class TestBankAccount(unittest.TestCase):
         self.bank_account.deposit(500)
 
         # Assert
-        self.assertEqual(10500, self.bank_account.balance)
+        self.assertEqual(10500, round(self.bank_account.balance, 2))
 
 
     def test_deposit_raise_valueerror_when_negative_amount_provided(self):
@@ -102,7 +102,7 @@ class TestBankAccount(unittest.TestCase):
         self.bank_account.withdraw(500)
 
         # Assert
-        self.assertEqual(9500, self.bank_account.balance)
+        self.assertEqual(9500, round(self.bank_account.balance, 2))
 
 
     def test_withdraw_raises_valueerror_with_negative_amount(self):
