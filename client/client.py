@@ -16,10 +16,11 @@ class Client:
         Initializes class attributes to argument values.
 
         Args:
-            client_number(int): The client number of the Client.
-            first_name(str): The first name of the Client.
-            last_name(str): The last name of the Client.
-            email_address(str): The email address of the Client.
+            client_number(int): An integer value representing the 
+            client number.
+            first_name(str): A string value the client's first name.
+            last_name(str): A string value the client's last name.
+            email_address(str):  A string value the client's email address.
 
         Raises:
             ValueError: When client number is not an integer, when
