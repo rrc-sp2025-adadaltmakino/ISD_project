@@ -19,4 +19,7 @@ This assignment will help to reinforce learning of the Module 1 concepts of:
 
 ## Encapsulation
 
-[use this section to explain how Encapsulation was achieved in the BankAccount class.]
+Encapsulation was achieved by defining attributes like 'account_number',
+'client_number', and 'balance' in the class BankAccount, and by defining
+methods like 'update_balance()', 'deposit()', and 'withdraw()'. What also
+helps with encapsulation is the use of accessors.
