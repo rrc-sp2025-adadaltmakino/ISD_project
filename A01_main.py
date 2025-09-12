@@ -12,9 +12,9 @@ from client.client import Client
 def main():
     """Test the functionality of the methods encapsulated 
     in the BankAccount and Client classes.
-    """ 
-    # In the statements coded below, ensure that any statement that could result 
-    # in an exception is handled.  When exceptions are 'caught', display the exception 
+    """
+    # In the statements coded below, ensure that any statement that could result
+    # in an exception is handled.  When exceptions are 'caught', display the exception
     # message to the console.
 
     # 1. Code a statement which creates a valid instance of the Client class.
@@ -34,12 +34,12 @@ def main():
     except ValueError as e:
         print(e)
 
-    # 3. Using the bank_account object declared in step 2, code a statement 
+    # 3. Using the bank_account object declared in step 2, code a statement
     # to instantiate the BankAccount object.
     # Use any integer value for the BankAccount number.
-    # Use the client_number used to create the Client object in step 1 for the 
-    # BankAccount's client_number. 
-    # Use a floating point value for the balance. 
+    # Use the client_number used to create the Client object in step 1 for the
+    # BankAccount's client_number.
+    # Use a floating point value for the balance.
     try:
         bank_account = BankAccount(4000, client.client_number, 2500.00)
         print(bank_account)
@@ -49,43 +49,43 @@ def main():
 
     # 4. Code a statement which creates an instance of the BankAccount class.
     # Use any integer value for the BankAccount number.
-    # Use the client_number used to create the Client object in step 1 for the 
-    # BankAccount's client_number. 
-    # Use an INVALID value (non-float) for the balance. 
+    # Use the client_number used to create the Client object in step 1 for the
+    # BankAccount's client_number.
+    # Use an INVALID value (non-float) for the balance.
     try:
         invalid_bank_account = BankAccount(5000, client.client_number, "number")
         print(invalid_bank_account)
     except ValueError as e:
         print(e)
 
-    # 5. Code a statement which prints the Client instance created in step 1. 
+    # 5. Code a statement which prints the Client instance created in step 1.
     # Code a statement which prints the BankAccount instance created in step 3.
     try:
         print(client)
     except ValueError as e:
         print(e)
- 
+
     try:
         print(bank_account)
     except ValueError as e:
         print(e)
 
 
-    # 6. Attempt to deposit a non-numeric value into the BankAccount create in step 3. 
+    # 6. Attempt to deposit a non-numeric value into the BankAccount create in step 3.
     try:
         bank_account.deposit("number")
     except ValueError as e:
         print(e)
 
 
-    # 7. Attempt to deposit a negative value into the BankAccount create in step 3. 
+    # 7. Attempt to deposit a negative value into the BankAccount create in step 3.
     try:
         bank_account.deposit(-500)
     except ValueError as e:
-        print(e)  
+        print(e)
 
 
-    # 8. Attempt to withdraw a valid amount of your choice from the BankAccount create in step 3. 
+    # 8. Attempt to withdraw a valid amount of your choice from the BankAccount create in step 3.
     try:
         bank_account.withdraw(50)
         print(bank_account)
@@ -93,7 +93,7 @@ def main():
         print(e)
 
 
-    # 9. Attempt to withdraw a non-numeric value from the BankAccount create in step 3. 
+    # 9. Attempt to withdraw a non-numeric value from the BankAccount create in step 3.
     try:
         bank_account.withdraw("number")
         print(bank_account)
@@ -101,7 +101,7 @@ def main():
         print(e)
 
 
-    # 10. Attempt to withdraw a negative value from the BankAccount create in step 3. 
+    # 10. Attempt to withdraw a negative value from the BankAccount create in step 3.
     try:
         bank_account.withdraw(-50)
         print(bank_account)
@@ -109,15 +109,15 @@ def main():
         print(e)
 
 
-    # 11. Attempt to withdraw a value from the BankAccount create in step 3 which 
-    # exceeds the current balance of the account. 
+    # 11. Attempt to withdraw a value from the BankAccount create in step 3 which
+    # exceeds the current balance of the account.
     try:
         bank_account.withdraw(50000)
         print(bank_account)
     except ValueError as e:
         print(e)
 
-    # 12. Code a statement which prints the BankAccount instance created in step 3. 
+    # 12. Code a statement which prints the BankAccount instance created in step 3.
     try:
         print(bank_account)
     except ValueError as e:
