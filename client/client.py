@@ -59,7 +59,7 @@ class Client:
         Accessor for the client number attribute.
 
         Returns:
-            int: Number of the client.
+            int: An integer value representing the client number.
         """
         return self.__client_number
 
@@ -69,7 +69,7 @@ class Client:
         Accessor for the first name attribute.
 
         Returns:
-            str: Client's first name.
+            str: A string value the client's first name.
         """
         return self.__first_name
 
@@ -79,7 +79,7 @@ class Client:
         Accessor for the last name attribute.
 
         Returns:
-            str: Client's last name.
+            str: A string value the client's last name.
         """
         return self.__last_name
 
@@ -89,7 +89,7 @@ class Client:
         Accessor for the email address attribute.
 
         Returns:
-            str: Client's email address.
+            str: A string value the client's email address.
         """
         return self.__email_address
 
