@@ -4,7 +4,7 @@ Description: A class to manage Client objects.
 __author__ = "Amanda Dadalt Makino"
 __version__ = "1.0.0"
 
-from email_validator import validate_email, EmailNotValidError
+# from email_validator import validate_email, EmailNotValidError
 
 class Client:
     """
@@ -45,13 +45,12 @@ class Client:
         else:
             raise ValueError("Last name cannot be blank.")
 
-        try:
-            if validate_email(email_address, check_deliverability= False):
-                self.__email_address = email_address
-            else:
-                raise EmailNotValidError
-        except EmailNotValidError:
-            self.__email_address = f"{email_address}@pixell-river.com"
+        # try:
+        #     validate_email(email_address, check_deliverability= False)
+        #     self.__email_address = email_address
+        # except EmailNotValidError:
+        #     self.__email_address = f"{email_address}@pixell-river.com"
+        self.__email_address = f"{email_address}@pixell-river.com"
 
 
     @property

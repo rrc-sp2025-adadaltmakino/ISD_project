@@ -172,5 +172,5 @@ class BankAccount:
 
         return (
             f"Account Number: {self.__account_number} "
-            f"Balance: ${self.__balance:.2f}"
+            f"Balance: ${self.__balance:.2f}\n"
             )
