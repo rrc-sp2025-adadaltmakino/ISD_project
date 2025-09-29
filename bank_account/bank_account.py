@@ -196,13 +196,10 @@ class BankAccount(ABC):
             f"Balance: ${self.__balance:.2f}\n"
             )
 
+    @abstractmethod
     def get_service_charges(self) -> float:
         """
-        Simulates get service charges process.
-
-        Args:
-
-        Returns:
-            int: An integer value representing the calculated service 
-            charges.
+        Abstract method
+        Implemented in subclass(es).
         """
+        pass
