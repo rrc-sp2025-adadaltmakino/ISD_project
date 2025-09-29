@@ -198,13 +198,11 @@ class BankAccount(ABC):
 
     def get_service_charges(self) -> float:
         """
-        Simulates the withdrawal process according to the amount value.
+        Simulates get service charges process.
 
         Args:
-            amount(float): The value that is going be subtracted off 
-            the balance.
-        
-        Raises:
-            ValueError: if amount is not numeric, and if amount is
-            negative, and if amount exceeds the current balance.
+
+        Returns:
+            int: An integer value representing the calculated service 
+            charges.
         """
