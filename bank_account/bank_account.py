@@ -4,23 +4,28 @@ Description: A class to manage Bank Account objects.
 __author__ = "Amanda Dadalt Makino"
 __version__ = "1.0.0"
 
+from abc import ABC, abstractmethod
+from datetime import date
 
-class BankAccount:
+class BankAccount(ABC):
     """
     BankAccount class: Maintains bank account data.
     """
-    def __init__(self, account_number: int, client_number: int,
-                 balance: float):
+    def __init__(self, BASE_SERVICE_CHARGE:float, account_number:int,
+                 client_number:int, balance: float, date_created:date):
         """
         Initializes class attributes to argument values.
 
         Args:
+            BASE_SERVICE_CHARGE(float): A float representing the base
+            service charge.
             account_number(int):  An integer value representing the 
             bank account number.
             client_number(int):  An integer value representing the 
             client number representing the account holder.
             balance(float): A float value representing the current 
             balance of the bank account.
+            date_created(date): Date representing the date created.
         
         Raises:
             ValueError: If account number is not an integer, if client
@@ -162,7 +167,7 @@ class BankAccount:
         self.update_balance(-amount)
 
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Returns a string representation of the class instance.
 
@@ -174,3 +179,8 @@ class BankAccount:
             f"Account Number: {self.__account_number} "
             f"Balance: ${self.__balance:.2f}\n"
             )
+    
+    def get_service_charges(self) -> float:
+        """
+        
+        """
