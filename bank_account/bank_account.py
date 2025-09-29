@@ -195,8 +195,16 @@ class BankAccount(ABC):
             f"Account Number: {self.__account_number} "
             f"Balance: ${self.__balance:.2f}\n"
             )
-    
+
     def get_service_charges(self) -> float:
         """
+        Simulates the withdrawal process according to the amount value.
+
+        Args:
+            amount(float): The value that is going be subtracted off 
+            the balance.
         
+        Raises:
+            ValueError: if amount is not numeric, and if amount is
+            negative, and if amount exceeds the current balance.
         """
