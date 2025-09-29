@@ -20,6 +20,16 @@ This assignment will help to reinforce learning of the Module 1 concepts of:
 - Classes
 - Unit Test Planning
 
+Assignment 02:
+
+This assignment will help to reinforce learning of the Module 2
+concepts of:
+
+- Abstraction
+- Inheritance
+- Superclass/Subclass
+- Polymorphism
+
 ## Encapsulation
 
 Encapsulation was achieved by defining attributes like 'account_number',
