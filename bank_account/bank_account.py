@@ -30,9 +30,19 @@ class BankAccount(ABC):
         Raises:
             ValueError: If account number is not an integer, if client
             number is not an integer, and if balance is not a float
-            and cannot be transferred to a float.
+            and cannot be transferred to a float, if base service
+            charge not a float or 0.50.
 
         """
+        if (
+            isinstance(BASE_SERVICE_CHARGE, float)
+            and BASE_SERVICE_CHARGE == 0.50
+            ):
+            self.BASE_SERVICE_CHARGE = BASE_SERVICE_CHARGE
+        else:
+            raise ValueError(
+                "Base Service Charge must be a float equal to 0.50."
+            )
 
         if isinstance(account_number, int):
             self.__account_number = account_number
@@ -51,6 +61,12 @@ class BankAccount(ABC):
                 self.__balance = float(balance)
             except ValueError:
                 self.__balance = 0.0
+
+        if isinstance (date_created, date):
+            self._date_created = date_created
+        else:
+            self._date_created = date.today()
+
 
     @property
     def account_number(self) -> int:
