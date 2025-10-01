@@ -11,14 +11,14 @@ class BankAccount(ABC):
     """
     BankAccount class: Maintains bank account data.
     """
-    def __init__(self, BASE_SERVICE_CHARGE:float, account_number:int,
+    BASE_SERVICE_CHARGE = 0.50
+
+    def __init__(self, account_number:int,
                  client_number:int, balance: float, date_created:date):
         """
         Initializes class attributes to argument values.
 
         Args:
-            BASE_SERVICE_CHARGE(float): A float representing the base
-            service charge.
             account_number(int):  An integer value representing the 
             bank account number.
             client_number(int):  An integer value representing the 
@@ -34,15 +34,6 @@ class BankAccount(ABC):
             charge not a float or 0.50.
 
         """
-        if (
-            isinstance(BASE_SERVICE_CHARGE, float)
-            and BASE_SERVICE_CHARGE == 0.50
-            ):
-            self.BASE_SERVICE_CHARGE = BASE_SERVICE_CHARGE
-        else:
-            raise ValueError(
-                "Base Service Charge must be a float equal to 0.50."
-            )
 
         if isinstance(account_number, int):
             self.__account_number = account_number
