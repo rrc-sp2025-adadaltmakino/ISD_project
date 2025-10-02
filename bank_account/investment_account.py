@@ -63,5 +63,14 @@ class InvestmentAccount(BankAccount):
 
     def get_service_charges(self):
         """
-        
+        Simulates the get service charges process according to the 
+        balance, overdraft limit, and overdraft rate.
+
+        Returns:
+            float: The calculated service rate.
         """
+
+        if self._date_created <= InvestmentAccount.TEN_YEARS_AGO:
+            return self.BASE_SERVICE_CHARGE
+        else:
+            return self.BASE_SERVICE_CHARGE + self.__management_fee
