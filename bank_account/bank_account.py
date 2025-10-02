@@ -134,7 +134,7 @@ class BankAccount(ABC):
 
         if amount <= 0:
             raise ValueError(
-                f"Deposit amount: ${amount:.2f} must be positive."
+                f"Deposit amount: ${amount:,.2f} must be positive."
                 )
 
         self.update_balance(amount)
@@ -162,13 +162,13 @@ class BankAccount(ABC):
 
         if amount <= 0:
             raise ValueError(
-                f"Withdraw amount: ${amount:.2f} must be positive."
+                f"Withdraw amount: ${amount:,.2f} must be positive."
                 )
 
         if amount > self.__balance:
             raise ValueError(
-                f"Withdraw amount: ${amount:.2f} must not exceed the "
-                f"account balance: ${self.__balance:.2f}"
+                f"Withdraw amount: ${amount:,.2f} must not exceed the "
+                f"account balance: ${self.__balance:,.2f}"
             )
 
         self.update_balance(-amount)
@@ -184,7 +184,7 @@ class BankAccount(ABC):
 
         return (
             f"Account Number: {self.__account_number} "
-            f"Balance: ${self.__balance:.2f}\n"
+            f"Balance: ${self.__balance:,.2f}\n"
             )
 
     @abstractmethod

@@ -89,3 +89,10 @@ class TestChequingAccount(unittest.TestCase):
         charges = chequing_account.get_service_charges()
         # Assert
         self.assertEqual(charges, 0.50)
+
+    
+    def test_str_valid_instance_returns_formatted_string(self):
+        expected = "Account Number: 1234 Balance: $10,000.00\n" \
+        "Overdraft Limit: $200.0 Overdraft Rate: 10.0% Account Type: Chequing"
+
+        self.assertEqual(expected, str(self.chequing_account))

@@ -56,7 +56,7 @@ class ChequingAccount(BankAccount):
             str: The Chequing Account instance formatted as a string.
         """
         bank_account_string = super().__str__()
-        chequing_account_string = ("\nOverdraft Limit: "
+        chequing_account_string = ("Overdraft Limit: "
                             + f"${self.__overdraft_limit} Overdraft Rate: "
                             + f"{self.__overdraft_rate}% Account Type: "
                             + "Chequing")
