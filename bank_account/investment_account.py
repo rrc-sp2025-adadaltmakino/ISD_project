@@ -5,7 +5,7 @@ __author__ = "Amanda Dadalt Makino"
 __version__ = "1.0.0"
 
 from abc import ABC, abstractmethod
-from datetime import date
+from datetime import date, timedelta
 from bank_account.bank_account import BankAccount
 
 class InvestmentAccount(BankAccount):
@@ -13,8 +13,7 @@ class InvestmentAccount(BankAccount):
     InvestmentAccount class: Maintains investment account data.
     """
 
-    TEN_YEARS_AGO: date
-    management_fee: float
+    TEN_YEARS_AGO: date.today() - timedelta(days = (10 * 365.25))
 
     def __init__(self, account_number: int, client_number: int, 
                  balance: float, date_created: date, management_fee: float):
@@ -32,4 +31,6 @@ class InvestmentAccount(BankAccount):
             management_fee(float):A float value representing the 
             management fee.
         """
-        
+        super().__init__(account_number, client_number, balance, date_created)
+
+        self.__management_fee = management_fee
