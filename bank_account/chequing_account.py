@@ -49,7 +49,7 @@ class ChequingAccount(BankAccount):
 
     def __str__(self) -> str:
         """
-        Returns a string representation of the Chequink Account class
+        Returns a string representation of the Chequing Account class
         instance.
 
         Returns:
