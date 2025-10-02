@@ -55,7 +55,37 @@ class TestChequingAccount(unittest.TestCase):
     def test_init_date_created_invalid_type(self):
         # Arrange & Act
         chequing_account = ChequingAccount(1234, 4567, 10000,
-                                           "November 14", 200, "ten")
+                                           "November 14", 200, 10)
         # Assert
         self.assertEqual(chequing_account._date_created,
                          date.today())
+
+
+    def test_get_service_charges_balance_greater_than_overdraft_limit(self):
+        # Arrange
+        chequing_account = ChequingAccount(1234, 4567, 10000,
+                                           date(2024, 11, 14), 200, 10)
+        # Act
+        charges = chequing_account.get_service_charges()
+        # Assert
+        self.assertEqual(charges, 0.50)
+
+
+    def test_get_service_charges_balance_lower_than_overdraft_limit(self):
+        # Arrange
+        chequing_account = ChequingAccount(1234, 4567, 100,
+                                        date(2024, 11, 14), 200, 10)
+        # Act
+        charges = chequing_account.get_service_charges()
+        # Assert
+        self.assertEqual(charges, 1000.5)
+
+
+    def test_get_service_charges_balance_equal_overdraft_limit(self):
+        # Arrange
+        chequing_account = ChequingAccount(1234, 4567, 200,
+                                        date(2024, 11, 14), 200, 10.0)
+        # Act
+        charges = chequing_account.get_service_charges()
+        # Assert
+        self.assertEqual(charges, 0.50)

@@ -67,12 +67,14 @@ class ChequingAccount(BankAccount):
     def get_service_charges(self) -> float:
         """
         Simulates the get service charges process according to the 
-        overdraft limit and overdraft rate.
+        balance, overdraft limit, and overdraft rate.
 
+        Returns:
+            float: The calculated service rate
         """
 
         if self.balance >= self.__overdraft_limit:
-            self.__overdraft_limit = super().BASE_SERVICE_CHARGE
+            return super().BASE_SERVICE_CHARGE
 
         else:
-            self.__overdraft_limit = super().BASE_SERVICE_CHARGE + (self.__overdraft_limit - self.balance) * self.__overdraft_rate
+            return super().BASE_SERVICE_CHARGE + (self.__overdraft_limit - self.balance) * self.__overdraft_rate
