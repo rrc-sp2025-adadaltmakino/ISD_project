@@ -14,20 +14,20 @@ class InvestmentAccount(BankAccount):
 
     TEN_YEARS_AGO = date.today() - timedelta(days = (10 * 365.25))
 
-    def __init__(self, account_number: int, client_number: int, 
+    def __init__(self, account_number: int, client_number: int,
                  balance: float, date_created: date, management_fee: float):
         """
         Initializes class attributes to argument values.
 
         Args:
-            account_number(int):  An integer value representing the 
+            - account_number(int):  An integer value representing the 
             bank account number.
-            client_number(int):  An integer value representing the 
+            - client_number(int):  An integer value representing the 
             client number representing the account holder.
-            balance(float): A float value representing the current 
+            - balance(float): A float value representing the current 
             balance of the bank account.
-            date_created(date): Date representing the date created.
-            management_fee(float):A float value representing the 
+            # date_created(date): Date representing the date created.
+            - management_fee(float):A float value representing the 
             management fee.
         """
         super().__init__(account_number, client_number, balance, date_created)
@@ -63,7 +63,7 @@ class InvestmentAccount(BankAccount):
     def get_service_charges(self):
         """
         Simulates the get service charges process according to the 
-        balance, overdraft limit, and overdraft rate.
+        date created.
 
         Returns:
             float: The calculated service rate.

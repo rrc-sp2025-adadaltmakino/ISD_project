@@ -49,7 +49,7 @@ class ChequingAccount(BankAccount):
 
     def __str__(self) -> str:
         """
-        Returns a string representation of the Chequing Account class
+        Returns a string representation of the ChequingAccount class
         instance.
 
         Returns:
@@ -70,11 +70,13 @@ class ChequingAccount(BankAccount):
         balance, overdraft limit, and overdraft rate.
 
         Returns:
-            float: The calculated service rate
+            float: The calculated service rate.
         """
 
         if self.balance >= self.__overdraft_limit:
             return super().BASE_SERVICE_CHARGE
 
         else:
-            return super().BASE_SERVICE_CHARGE + (self.__overdraft_limit - self.balance) * self.__overdraft_rate
+            return (super().BASE_SERVICE_CHARGE +
+                    (self.__overdraft_limit - self.balance)
+                    * self.__overdraft_rate)

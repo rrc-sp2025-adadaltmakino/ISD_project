@@ -38,7 +38,8 @@ class TestSavingsAccount(unittest.TestCase):
         savings_account = SavingsAccount(1234, 4567, 10000,
                                            date(2024, 11, 14), "hundred")
         # Assert
-        self.assertEqual(50.0, savings_account._SavingsAccount__minimum_balance)
+        self.assertEqual(50.0, 
+                         savings_account._SavingsAccount__minimum_balance)
 
 
     def test_get_services_charges_balance_greater_than_minimum_balance(self):

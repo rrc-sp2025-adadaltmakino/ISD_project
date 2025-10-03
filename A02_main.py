@@ -163,7 +163,9 @@ except ValueError as e:
     print(e)
 
 try:
-    old_investment_account.withdraw(old_investment_account.get_service_charges())
+    old_investment_account.withdraw(
+        old_investment_account.get_service_charges()
+        )
 except ValueError as e:
     print(e)
 
