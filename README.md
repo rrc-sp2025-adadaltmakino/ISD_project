@@ -36,3 +36,13 @@ Encapsulation was achieved by defining attributes like 'account_number',
 'client_number', and 'balance' in the class BankAccount, and by defining
 methods like 'update_balance()', 'deposit()', and 'withdraw()'. What also
 helps with encapsulation is the use of accessors.
+
+## Polymorphism
+
+In the BankAccount class, polymorphism was achieved when I defined the
+get_service_charges() method. I defined it in the BankAccount superclass,
+and inhereted it in the InvestmentAccount, ChequingAccount, and SavingsAccount
+subclasses. In the BankAccount class I just used the "pass" since there are
+not enough information available at the superclass level, and when it was
+inhereted in the subclasses the polymorphism was implemented by using that
+method to behave different ways according to each subclass requirements.
