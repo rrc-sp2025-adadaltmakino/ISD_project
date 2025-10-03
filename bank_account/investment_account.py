@@ -13,7 +13,7 @@ class InvestmentAccount(BankAccount):
     InvestmentAccount class: Maintains investment account data.
     """
 
-    TEN_YEARS_AGO: date.today() - timedelta(days = (10 * 365.25))
+    TEN_YEARS_AGO = date.today() - timedelta(days = (10 * 365.25))
 
     def __init__(self, account_number: int, client_number: int, 
                  balance: float, date_created: date, management_fee: float):
@@ -55,7 +55,7 @@ class InvestmentAccount(BankAccount):
             management_fee_string = f"${self.__management_fee:,.2f}"
 
         investment_account_string = (f"Date Created: {self._date_created} "
-                                + f"Management Fee: ${management_fee_string} "
+                                + f"Management Fee: {management_fee_string} "
                                 + "Account Type: Investment")
 
         return (bank_account_string + investment_account_string)
