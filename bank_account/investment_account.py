@@ -4,7 +4,6 @@ Description: A class to manage Investment Account objects.
 __author__ = "Amanda Dadalt Makino"
 __version__ = "1.0.0"
 
-from abc import ABC, abstractmethod
 from datetime import date, timedelta
 from bank_account.bank_account import BankAccount
 

@@ -37,3 +37,34 @@ class SavingsAccount(BankAccount):
             self.__minimum_balance = float(minimum_balance)
         except ValueError:
             self.__minimum_balance = 50.0
+
+    def __str__(self):
+        """
+        Returns a string representation of the SavingsAccount class
+        instance.
+
+        Returns:
+            str: The SavingsAccount instance formatted as a string.
+        """
+        bank_account_string = super().__str__()
+
+        savings_account_string = (
+            f"Minimum Balance: {self.__minimum_balance:.2f} "
+            + "Account Type: Savings")
+
+        return (bank_account_string + savings_account_string)
+
+
+    def get_service_charges(self):
+        """
+        Simulates the get service charges process according to the 
+        balance and base service charge fee.
+
+        Returns:
+            float: The calculated service rate.
+        """
+        if self.__balance >= self.__minimum_balance:
+            return self.BASE_SERVICE_CHARGE
+        else:
+            return (self.BASE_SERVICE_CHARGE *
+                    SavingsAccount.SERVICE_CHARGE_PREMIUM)
