@@ -49,7 +49,7 @@ class SavingsAccount(BankAccount):
         bank_account_string = super().__str__()
 
         savings_account_string = (
-            f"Minimum Balance: {self.__minimum_balance:.2f} "
+            f"Minimum Balance: ${self.__minimum_balance:.2f} "
             + "Account Type: Savings")
 
         return (bank_account_string + savings_account_string)
@@ -63,7 +63,7 @@ class SavingsAccount(BankAccount):
         Returns:
             float: The calculated service rate.
         """
-        if self.__balance >= self.__minimum_balance:
+        if self._BankAccount__balance >= self.__minimum_balance:
             return self.BASE_SERVICE_CHARGE
         else:
             return (self.BASE_SERVICE_CHARGE *
