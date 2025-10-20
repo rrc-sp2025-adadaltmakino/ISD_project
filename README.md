@@ -30,6 +30,15 @@ concepts of:
 - Superclass/Subclass
 - Polymorphism
 
+Assignment 03:
+
+This assignment will help to reinforce learning of the Module 3 concepts of:
+
+- Design Patterns
+- Best Practices when Implementing Design Patterns
+- Strategy Pattern
+- Observer Pattern
+
 ## Encapsulation
 
 Encapsulation was achieved by defining attributes like 'account_number',
