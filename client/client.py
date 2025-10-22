@@ -26,8 +26,6 @@ class Client:
         Raises:
             ValueError: When client number is not an integer, when
             first name is blank, when last name is blank.
-             
-            EmailNotValid: When email address fails to be validated.
         """
 
         if isinstance(client_number, int):
