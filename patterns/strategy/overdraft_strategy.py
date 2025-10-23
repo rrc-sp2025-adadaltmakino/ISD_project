@@ -38,11 +38,19 @@ class OverdraftStrategy(ServiceChargeStrategy):
             float: The calculated service rate.
         """
         balance = account.get_balance()
+        service_charge = self.BASE_SERVICE_CHARGE
 
-        if balance >= self.__overdraft_limit:
-            return self.BASE_SERVICE_CHARGE
-        else:
-            return (
-                self.BASE_SERVICE_CHARGE + (self.__overdraft_limit - balance)
-                * self.__overdraft_rate
-            )
+        if balance < self.__overdraft_limit:
+            service_charge += (
+                self.__overdraft_limit - balance
+                ) * self.__overdraft_rate
+
+        return service_charge
+
+        # if balance >= self.__overdraft_limit:
+        #     return self.BASE_SERVICE_CHARGE
+        # else:
+        #     return (
+        #         self.BASE_SERVICE_CHARGE + (self.__overdraft_limit - balance)
+        #         * self.__overdraft_rate
+        #     )
