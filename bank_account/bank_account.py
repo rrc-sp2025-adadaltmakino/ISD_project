@@ -6,14 +6,19 @@ __version__ = "1.0.0"
 
 from abc import ABC, abstractmethod
 from datetime import date
+from patterns.observer.subject import Subject
+from patterns.observer.subject import Observer
 
-class BankAccount(ABC):
+class BankAccount(Subject, ABC):
     """
     BankAccount class: Maintains bank account data.
     """
 
-    def __init__(self, account_number:int,
-                 client_number:int, balance: float, date_created:date):
+    LARGE_TRANSACTION_THRESHOLD: 9999.99
+    LOW_BALANCE_LEVEL: 50.0
+
+    def __init__(self, account_number: int,
+                 client_number: int, balance: float, date_created: date):
         """
         Initializes class attributes to argument values.
 
@@ -30,6 +35,9 @@ class BankAccount(ABC):
             ValueError: If account number is not an integer, if client
             number is not an integer.
         """
+        # invoking super class and initializing inhereted attribute (assignment3)
+        super().__init__()
+        self.__observers = []
 
         if isinstance(account_number, int):
             self.__account_number = account_number
@@ -88,6 +96,7 @@ class BankAccount(ABC):
         """
         return self.__balance
 
+    # Modified in assignment3
     def update_balance(self, amount: float) -> None:
         """
         Updates the balance according to the amount.
@@ -106,6 +115,20 @@ class BankAccount(ABC):
 
         if valid:
             self.__balance += amount
+
+        #assignment3
+        if self.__balance < self.LOW_BALANCE_LEVEL:
+            self.notify(
+                f"Low balance warning ${self.__balance:.2f}: "
+                + f"on account {self.__account_number}."
+            )
+
+        if amount > self.LARGE_TRANSACTION_THRESHOLD:
+            self.notify(
+                f"Large transaction ${amount:.2f}: "
+                f"on account: {self.__account_number}"
+            )
+
 
 
     def deposit(self, amount: float) -> None:
@@ -185,3 +208,36 @@ class BankAccount(ABC):
         Implemented in subclass(es).
         """
         pass
+
+    # observer methods (assignment3)
+    def attach(self, observer: Observer) -> None:
+        """
+        Adds a new observer to the subject's list of observers.
+
+        Args:
+            observer(Observer): The client being added to the list.
+        """
+        if observer not in self.__observers:
+            self.__observers.append(observer)
+
+
+    def detach(self, observer: Observer) -> None:
+        """
+        Removes an observer from the subject's list of observers.
+
+        Args:
+            observer(Observer): The client being removed from the list.
+        """
+        if observer in self.__observers:
+            self.__observers.remove(observer)
+
+
+    def notify(self, message: str) -> None:
+        """
+        Alerts all registered observers of a state change.
+
+        Args:
+            observer(Observer): The client being notified.
+        """
+        for observer in self.__observers:
+            observer.update(message)
