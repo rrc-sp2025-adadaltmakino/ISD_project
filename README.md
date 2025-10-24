@@ -63,3 +63,12 @@ by creating different strategies for each type of account. For example, the
 management_fee_strategy is implementing InvestmentAccount logic to calculate
 service charges. The minimum balance strategy was created focused on the
 SavingsAccount logic, and so on.
+
+## Observer Pattern
+
+The observer pattern was implemented in the BankAccount class/subclasses when
+BankAccount class became the subject and the Client class became the observer.
+I used the attach() method to connect the observer to the appropriate bank
+account, and the notify() method when a big event occurs (large transaction
+or low balance) to automatically send a notification to the client through
+their email.
