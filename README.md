@@ -55,3 +55,11 @@ subclasses. In the BankAccount class I just used the "pass" since there are
 not enough information available at the superclass level, and when it was
 inhereted in the subclasses the polymorphism was implemented by using that
 method to behave different ways according to each subclass requirements.
+
+## Steategy Pattern
+
+The strategy pattern was implemented in my bank account classes/subclasses
+by creating different strategies for each type of account. For example, the
+management_fee_strategy is implementing InvestmentAccount logic to calculate
+service charges. The minimum balance strategy was created focused on the
+SavingsAccount logic, and so on.
