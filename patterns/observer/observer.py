@@ -6,7 +6,8 @@ __version__ = "1.0.0"
 
 from abc import ABC, abstractmethod
 
-class Oberver(ABC):
+
+class Observer(ABC):
     """
     Observer class: Maintains observer data.
     """
