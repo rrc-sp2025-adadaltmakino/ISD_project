@@ -30,11 +30,11 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
 
     def calculate_service_charge(self, account: BankAccount) -> float:
         """
-            Simulates the get service charges process according to the 
-            date created.
+        Simulates the get service charges process according to the 
+        date created.
 
-            Returns:
-                float: The calculated service rate.
+        Returns:
+            float: The calculated service rate.
         """
 
         service_charge = self.BASE_SERVICE_CHARGE
