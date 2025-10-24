@@ -28,7 +28,7 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
         self.__date_created = date_created
         self.__management_fee = management_fee
 
-    def calculate_service_charge(self, account: BankAccount) -> float:
+    def calculate_service_charges(self, account: BankAccount) -> float:
         """
         Simulates the get service charges process according to the 
         date created.
@@ -39,7 +39,7 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
 
         service_charge = self.BASE_SERVICE_CHARGE
 
-        if self.__date_created > ManagementFeeStrategy.TEN_YEARS_AGO:
+        if self.__date_created > self.TEN_YEARS_AGO:
             service_charge += self.__management_fee
 
         return service_charge

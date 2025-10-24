@@ -11,7 +11,6 @@ class BankAccount(ABC):
     """
     BankAccount class: Maintains bank account data.
     """
-    BASE_SERVICE_CHARGE = 0.50
 
     def __init__(self, account_number:int,
                  client_number:int, balance: float, date_created:date):
