@@ -21,8 +21,8 @@ class OverdraftStrategy(ServiceChargeStrategy):
         Args:
             - overdraft_limit(float): Value that represents the
             overdraft limit.
-            - overdraft_rate(float): Value that represents the overdraft
-            rate.
+            - overdraft_rate(float): Value that represents the 
+            overdraft rate.
         """
         self.__overdraft_limit = overdraft_limit
         self.__overdraft_rate = overdraft_rate

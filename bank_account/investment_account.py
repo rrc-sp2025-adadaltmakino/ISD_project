@@ -38,7 +38,8 @@ class InvestmentAccount(BankAccount):
         except ValueError:
             self.__management_fee = 2.55
 
-        self.__strategy = ManagementFeeStrategy(date_created, self.__management_fee)
+        self.__strategy = ManagementFeeStrategy(date_created,
+                                                self.__management_fee)
 
 
     def __str__(self):
