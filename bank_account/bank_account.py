@@ -14,8 +14,8 @@ class BankAccount(Subject, ABC):
     BankAccount class: Maintains bank account data.
     """
 
-    LARGE_TRANSACTION_THRESHOLD: 9999.99
-    LOW_BALANCE_LEVEL: 50.0
+    LARGE_TRANSACTION_THRESHOLD = 9999.99
+    LOW_BALANCE_LEVEL = 50.0
 
     def __init__(self, account_number: int,
                  client_number: int, balance: float, date_created: date):

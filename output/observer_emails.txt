@@ -1,0 +1,30 @@
+---
+To: amandadm@pixell-river.com@pixell-river.com
+Subject: ALERT: Unusual Activity: 2025-10-24 12:08:00.012249
+Message: Notification for 1234: Amanda Makino: Low balance warning $45.00: on account 2002.
+---
+---
+To: amandadm@pixell-river.com@pixell-river.com
+Subject: ALERT: Unusual Activity: 2025-10-24 12:08:00.013335
+Message: Notification for 1234: Amanda Makino: Large transaction $20000.00: on account: 2002
+---
+---
+To: amandadm@pixell-river.com@pixell-river.com
+Subject: ALERT: Unusual Activity: 2025-10-24 12:08:00.014117
+Message: Notification for 1234: Amanda Makino: Low balance warning $45.00: on account 3003.
+---
+---
+To: amandadm@pixell-river.com@pixell-river.com
+Subject: ALERT: Unusual Activity: 2025-10-24 12:08:00.015752
+Message: Notification for 1234: Amanda Makino: Large transaction $20000.00: on account: 3003
+---
+---
+To: lcutrone@pixell-river.com@pixell-river.com
+Subject: ALERT: Unusual Activity: 2025-10-24 12:08:00.016912
+Message: Notification for 9876: Laurie Cutrone: Low balance warning $45.00: on account 3004.
+---
+---
+To: lcutrone@pixell-river.com@pixell-river.com
+Subject: ALERT: Unusual Activity: 2025-10-24 12:08:00.018220
+Message: Notification for 9876: Laurie Cutrone: Large transaction $15000.00: on account: 3004
+---

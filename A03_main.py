@@ -31,13 +31,13 @@ except ValueError as e:
 # of the client created in step 2.
 
 try:
-    chequing_account = ChequingAccount(1234, 4567, 1000,
+    chequing_account = ChequingAccount(2002, 4567, 1000,
                                        date(2024, 11, 14), 200, 10)
 except ValueError as e:
     print(e)
 
 try:
-    savings_account = SavingsAccount(1234, 4567, 10000, (2024, 11, 14), 100)
+    savings_account = SavingsAccount(3003, 4567, 500, date(2024, 11, 14), 50)
 except ValueError as e:
     print(e)
 
@@ -63,8 +63,22 @@ except ValueError as e:
 
 # 5a. Create a second Client object with data of your choice.
 # 5b. Create a SavingsAccount object with data of your choice, using the client_number
+try:
+    new_client = Client(9876, "Laurie", "Cutrone",
+                            "lcutrone@pixell-river.com")
+except ValueError as e:
+    print(e)
 
+try:
+    new_client_savings_account = SavingsAccount(
+        3004, 9876, 500, date(2022, 10, 15), 50)
+except ValueError as e:
+    print(e)
 
+try:
+    new_client_savings_account.attach(new_client)
+except ValueError as e:
+    print(e)
 
 
 # 6. Use the ChequingAccount and SavingsAccount objects created
@@ -76,3 +90,64 @@ except ValueError as e:
 # REMINDER: the deposit() and withdraw() methods can raise exceptions
 # ensure the methods are invoked using proper exception handling such
 # that any exception messages are printed to the console.
+
+### CLIENT ###
+
+## CHEQUING
+#no notification
+try:
+    chequing_account.deposit(500)
+except ValueError as e:
+    print(e)
+
+#low balance warning
+try:
+    chequing_account.withdraw(1455)
+except ValueError as e:
+    print(e)
+
+#large transaction
+try:
+    chequing_account.deposit(20000)
+except ValueError as e:
+    print(e)
+
+##SAVINGS
+#no notification
+try:
+    savings_account.withdraw(20)
+except ValueError as e:
+    print(e)
+
+#low balance warning
+try:
+    savings_account.withdraw(435)
+except ValueError as e:
+    print(e)
+
+#large transaction
+try:
+    savings_account.deposit(20000)
+except ValueError as e:
+    print(e)
+
+
+### NEW CLIENT ###
+
+#no notification
+try:
+    new_client_savings_account.deposit(500)
+except ValueError as e:
+    print(e)
+
+#low balance warning
+try:
+    new_client_savings_account.withdraw(955)
+except ValueError as e:
+    print(e)
+
+#large transaction
+try:
+    new_client_savings_account.deposit(15000)
+except ValueError as e:
+    print(e)

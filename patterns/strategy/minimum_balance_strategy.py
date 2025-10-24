@@ -36,7 +36,7 @@ class MinimumBalanceStrategy(ServiceChargeStrategy):
         """
 
         service_charge = self.BASE_SERVICE_CHARGE
-        balance = account._BankAccount__balance
+        balance = account.balance
 
         if balance < self.__minimum_balance:
             service_charge = service_charge * self.SERVICE_CHARGE_PREMIUM

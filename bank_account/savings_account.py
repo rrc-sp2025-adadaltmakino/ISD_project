@@ -37,7 +37,7 @@ class SavingsAccount(BankAccount):
             self.__minimum_balance = float(minimum_balance)
         except ValueError:
             self.__minimum_balance = 50.0
-        
+
         self.__strategy = MinimumBalanceStrategy(self.__minimum_balance)
 
     def __str__(self):
