@@ -60,7 +60,7 @@ class InvestmentAccount(BankAccount):
         return (bank_account_string + investment_account_string)
 
 
-    def get_service_charges(self):
+    def get_service_charges(self) -> float:
         """
         Simulates the get service charges process according to the 
         date created.
@@ -68,8 +68,14 @@ class InvestmentAccount(BankAccount):
         Returns:
             float: The calculated service rate.
         """
+        service_charge = self.BASE_SERVICE_CHARGE
 
-        if self._date_created <= InvestmentAccount.TEN_YEARS_AGO:
-            return self.BASE_SERVICE_CHARGE
-        else:
-            return self.BASE_SERVICE_CHARGE + self.__management_fee
+        if self._date_created > self.TEN_YEARS_AGO:
+            service_charge += self.__management_fee
+
+        return service_charge
+
+        # if self._date_created <= InvestmentAccount.TEN_YEARS_AGO:
+        #     return self.BASE_SERVICE_CHARGE
+        # else:
+        #     return self.BASE_SERVICE_CHARGE + self.__management_fee

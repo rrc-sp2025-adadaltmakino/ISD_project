@@ -73,10 +73,19 @@ class ChequingAccount(BankAccount):
             float: The calculated service rate.
         """
 
-        if self.balance >= self.__overdraft_limit:
-            return super().BASE_SERVICE_CHARGE
+        service_charge = super().BASE_SERVICE_CHARGE
 
-        else:
-            return (super().BASE_SERVICE_CHARGE +
-                    (self.__overdraft_limit - self.balance)
-                    * self.__overdraft_rate)
+        if self.balance < self.__overdraft_limit:
+            service_charge += (
+                self.__overdraft_limit - self.balance
+            ) * self.__overdraft_rate
+
+        return service_charge
+
+        # if self.balance >= self.__overdraft_limit:
+        #     return super().BASE_SERVICE_CHARGE
+
+        # else:
+        #     return (super().BASE_SERVICE_CHARGE +
+        #             (self.__overdraft_limit - self.balance)
+        #             * self.__overdraft_rate)

@@ -63,8 +63,18 @@ class SavingsAccount(BankAccount):
         Returns:
             float: The calculated service rate.
         """
-        if self.balance >= self.__minimum_balance:
-            return self.BASE_SERVICE_CHARGE
-        else:
-            return (self.BASE_SERVICE_CHARGE *
-                    SavingsAccount.SERVICE_CHARGE_PREMIUM)
+
+        service_charge = self.BASE_SERVICE_CHARGE
+
+        if self.balance < self.__minimum_balance:
+            service_charge = (
+                service_charge * SavingsAccount.SERVICE_CHARGE_PREMIUM
+                )
+
+        return service_charge
+
+        # if self.balance >= self.__minimum_balance:
+        #     return self.BASE_SERVICE_CHARGE
+        # else:
+        #     return (self.BASE_SERVICE_CHARGE *
+        #             SavingsAccount.SERVICE_CHARGE_PREMIUM)

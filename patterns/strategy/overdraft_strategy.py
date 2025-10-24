@@ -1,5 +1,5 @@
 """"
-Description: A class to manage Overdraft Strategy class  objects.
+Description: A class to manage Overdraft Strategy class objects.
 """
 __author__ = "Amanda Dadalt Makino"
 __version__ = "1.0.0"
@@ -46,11 +46,3 @@ class OverdraftStrategy(ServiceChargeStrategy):
                 ) * self.__overdraft_rate
 
         return service_charge
-
-        # if balance >= self.__overdraft_limit:
-        #     return self.BASE_SERVICE_CHARGE
-        # else:
-        #     return (
-        #         self.BASE_SERVICE_CHARGE + (self.__overdraft_limit - balance)
-        #         * self.__overdraft_rate
-        #     )
