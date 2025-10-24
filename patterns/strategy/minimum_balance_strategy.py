@@ -13,6 +13,7 @@ class MinimumBalanceStrategy(ServiceChargeStrategy):
     data.
     """
 
+    BASE_SERVICE_CHARGE = 0.50
     SERVICE_CHARGE_PREMIUM = 2.0
 
     def __init__(self, minimum_balance: float):
@@ -34,8 +35,8 @@ class MinimumBalanceStrategy(ServiceChargeStrategy):
             float: The calculated service rate.
         """
 
-        balance = account.get_balance()
         service_charge = self.BASE_SERVICE_CHARGE
+        balance = account._BankAccount__balance
 
         if balance < self.__minimum_balance:
             service_charge = service_charge * self.SERVICE_CHARGE_PREMIUM

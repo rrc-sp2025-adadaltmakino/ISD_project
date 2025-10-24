@@ -13,7 +13,7 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
     ManagementFeeStrategy class: Maintains management fee strategy 
     data.
     """
-
+    BASE_SERVICE_CHARGE = 0.50
     TEN_YEARS_AGO = date.today() - timedelta(days = 10 * 365.25)
 
     def __init__(self, date_created: date, management_fee: float):
