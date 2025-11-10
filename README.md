@@ -39,6 +39,15 @@ This assignment will help to reinforce learning of the Module 3 concepts of:
 - Strategy Pattern
 - Observer Pattern
 
+Assignment 04:
+
+This assignment will help to reinforce learning of the Module 3 concepts of:
+
+- Programming Paradigms
+- PySide6
+- Qt Framework
+- PySide6 Widgets
+
 ## Encapsulation
 
 Encapsulation was achieved by defining attributes like 'account_number',
