@@ -122,10 +122,27 @@ def load_data()->tuple[dict,dict]:
                 balance = float(row["balance"])
                 date_created = row["date_created"]
                 account_type = row["account_type"]
-                overdraft_limit = float(row[overdraft_limit])
-                overdraft_rate = float(row["overdraft_rate"])
-                minimum_balance = float(row["minimum_balance"])
-                management_fee = float(row["management_fee"])
+
+                if row["overdraft_limit"] == "Null":
+                    overdraft_limit = None
+                else:
+                    overdraft_limit = float(row["overdraft_limit"])
+
+                if row["overdraft_rate"] == "Null":
+                    overdraft_rate = None
+                else:
+                    overdraft_rate = float(row["overdraft_rate"])
+
+                if row["minimum_balance"] == "Null":
+                    minimum_balance = None
+                else:
+                    minimum_balance = float(row["minimum_balance"])
+
+                if row["management_fee"] == "Null":
+                    management_fee = None
+                else:
+                    management_fee = float(row["management_fee"])
+
 
                 if account_type == "ChequingAccount":
                     account = ChequingAccount(account_number,
@@ -159,7 +176,7 @@ def load_data()->tuple[dict,dict]:
                         + f"Client number: {client_number}")
 
             except ValueError as e:
-                logging.error(f"Unable to create bank account {e}")
+                logging.error(f"Unable to create bank account: {e}")
 
     # RETURN STATEMENT
     return (client_listing, accounts)
