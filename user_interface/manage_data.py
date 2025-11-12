@@ -6,6 +6,10 @@ import os
 import sys
 from bank_account.bank_account import BankAccount
 from client.client import Client
+from bank_account.chequing_account import ChequingAccount
+from bank_account.savings_account import SavingsAccount
+from bank_account.investment_account import InvestmentAccount
+
 
 # THIS LINE IS NEEDED SO THAT THE GIVEN TESTING
 # CODE CAN RUN FROM THIS DIRECTORY.
@@ -65,13 +69,13 @@ def load_data()->tuple[dict,dict]:
     with open(clients_csv_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
 
-        # client.csv -> 
+        # client.csv ->
                 # client_number, first_name, last_name, email_address
 
-        # Client class -> 
-                # client_number:int, 
-                # first_name:str, 
-                # last_name:str, 
+        # Client class ->
+                # client_number:int,
+                # first_name:str,
+                # last_name:str,
                 # email_address:str
 
         for row in reader:
@@ -83,10 +87,10 @@ def load_data()->tuple[dict,dict]:
 
                 client = Client(
                     client_number, first_name, last_name, email_address)
-                
+
                 client_listing[client_number] = client
 
-            except Exception as e:
+            except ValueError as e:
                 logging.error(f"Unable to create client: {e}")
 
 
@@ -94,7 +98,71 @@ def load_data()->tuple[dict,dict]:
     with open(accounts_csv_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
 
+        # accounts.csv ->
+                #account_number, client_number, balance, date_created,
+                # account_type, overdraft_limit, overdraft_rate,
+                # minimum_balance, management_fee
+
+        # ChequingAccount (account_number:int, client_number:int,
+                # balance:float, date_created:date,
+                # overdraft_limit:float, overdraft_rate:float)
+
+        # SavingsAccount (account_number:int, client_number:int,
+                # balance:float, date_created:date,
+                # minimum_balance:float)
+
+        # InvestmentsAccount (account_number:int, client_number:int,
+                # balance:float, date_created:date,
+                # management_fee:float)
+
+        for row in reader:
+            try:
+                account_number = int(row["account_number"])
+                client_number = int(row["client_number"])
+                balance = float(row["balance"])
+                date_created = row["date_created"]
+                account_type = row["account_type"]
+                overdraft_limit = float(row[overdraft_limit])
+                overdraft_rate = float(row["overdraft_rate"])
+                minimum_balance = float(row["minimum_balance"])
+                management_fee = float(row["management_fee"])
+
+                if account_type == "ChequingAccount":
+                    account = ChequingAccount(account_number,
+                                              client_number,
+                                              balance, date_created,
+                                              overdraft_limit,
+                                              overdraft_rate)
+
+                elif account_type == "SavingsAccount":
+                    account = SavingsAccount(account_number,
+                                             client_number,
+                                             balance,
+                                             date_created,
+                                             minimum_balance)
+
+                elif account_type == "InvestmentAccount":
+                    account = InvestmentAccount(account_number,
+                                                client_number,
+                                                balance,
+                                                date_created,
+                                                management_fee)
+
+                else:
+                    raise ValueError("Not a valid account type.")
+
+                if client_number in client_listing:
+                    accounts[account_number] = account
+                else:
+                    logging.error(
+                        f"Bank Account: {account_number} contains invalid " 
+                        + f"Client number: {client_number}")
+
+            except ValueError as e:
+                logging.error(f"Unable to create bank account {e}")
+
     # RETURN STATEMENT
+    return (client_listing, accounts)
 
 
 
