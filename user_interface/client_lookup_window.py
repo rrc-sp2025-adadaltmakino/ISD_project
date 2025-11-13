@@ -29,7 +29,7 @@ class ClientLookupWindow(LookupWindow):
 
         # establishing connnections
         self.lookup_button.clicked.connect(self.on_lookup_client)
-        #self.client_number_edit.textChanged.connect(self.on_text_changed)
+        self.client_number_edit.textChanged.connect(self.on_text_changed)
         #self.account_table.cellClicked.connect(self.on_select_account)
 
 
@@ -115,13 +115,15 @@ class ClientLookupWindow(LookupWindow):
         self.account_table.resizeColumnsToContents()
 
 
-    # @Slot
-    # def on_text_changed(self) -> None:
-    #     """
+    @Slot()
+    def on_text_changed(self) -> None:
+        """
+        Clear all bank account records from display.
+        """
+        ## use setRowCount w an argument of 0
+        self.account_table.setRowCount(0)
 
-    #     """
-
-    # @Slot
+    # @Slot()
     # def on_select_account(self) -> None:
     #     """
 
