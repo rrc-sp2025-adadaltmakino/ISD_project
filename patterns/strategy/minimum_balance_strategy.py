@@ -31,6 +31,9 @@ class MinimumBalanceStrategy(ServiceChargeStrategy):
         """
         Simulates the get service charges process.
 
+        Args:
+            account(BankAccount): The client bank account used.
+
         Returns:
             float: The calculated service rate.
         """

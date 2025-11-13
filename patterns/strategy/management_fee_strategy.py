@@ -33,6 +33,9 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
         Simulates the get service charges process according to the 
         date created.
 
+        Args:
+            account(BankAccount): The customer's bank account.
+
         Returns:
             float: The calculated service rate.
         """

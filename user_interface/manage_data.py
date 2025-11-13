@@ -4,12 +4,6 @@ __credits__ = "Amanda Dadalt Makino"
 
 import os
 import sys
-from bank_account.bank_account import BankAccount
-from client.client import Client
-from bank_account.chequing_account import ChequingAccount
-from bank_account.savings_account import SavingsAccount
-from bank_account.investment_account import InvestmentAccount
-
 
 # THIS LINE IS NEEDED SO THAT THE GIVEN TESTING
 # CODE CAN RUN FROM THIS DIRECTORY.
@@ -17,6 +11,12 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import csv
 from datetime import datetime
 import logging
+
+from bank_account.bank_account import BankAccount
+from client.client import Client
+from bank_account.chequing_account import ChequingAccount
+from bank_account.savings_account import SavingsAccount
+from bank_account.investment_account import InvestmentAccount
 
 # *******************************************************************************
 # GIVEN LOGGING AND FILE ACCESS CODE
@@ -120,7 +120,8 @@ def load_data()->tuple[dict,dict]:
                 account_number = int(row["account_number"])
                 client_number = int(row["client_number"])
                 balance = float(row["balance"])
-                date_created = row["date_created"]
+                # date_created = row["date_created"]
+                date_created = datetime.strptime(row["date_created"], "%Y-%m-%d").date()
                 account_type = row["account_type"]
 
                 if row["overdraft_limit"] == "Null":
