@@ -12,7 +12,10 @@ from user_interface.manage_data import update_data
 from bank_account.bank_account import BankAccount
 
 class ClientLookupWindow(LookupWindow):
-    
+    """
+    ClientLookupWindow class: Maintains look up window data.
+    """
+
     def __init__(self):
         """
         Initializes class attributes to argument values.
@@ -25,19 +28,19 @@ class ClientLookupWindow(LookupWindow):
         self.accounts = accounts
 
         # establishing connnections
-        self.lookup_button.clicked.connect(self.on_lookup_client) #lookup_button - clicked - lookup_client()
-        self.client_number_edit.textChanged.connect(self.on_text_changed) #client_number_edit - textChanged - on_text_changed()
-        self.account_table.cellClicked.connect(self.on_select_account) #account_table - cellClicked - on_select_account()
+        self.lookup_button.clicked.connect(self.on_lookup_client)
+        #self.client_number_edit.textChanged.connect(self.on_text_changed)
+        #self.account_table.cellClicked.connect(self.on_select_account)
 
-    
-    @Slot
+
+    @Slot()
     def on_lookup_client(self) -> None:
         """
         Slot for the look_up button clicked signal,
         Displays client data on the screen.
         """
 
-        ## obtain client number into the client_number_edit widget 
+        ## obtain client number into the client_number_edit widget
         ## try convert to int, except issue in QMsgBox
 
         client_number_text = self.client_number_edit.text().strip()
@@ -57,7 +60,7 @@ class ClientLookupWindow(LookupWindow):
         ## if not: display QMsgBox
 
         if client_number not in self.client_listing:
-            QMessageBox.information(self, "Not Found", 
+            QMessageBox.information(self, "Not Found",
                                     f"Client Number: {client_number} "
                                     + "not found.")
 
@@ -69,7 +72,7 @@ class ClientLookupWindow(LookupWindow):
         ## set the client_info_label to hte Client Name
 
         client = self.client_listing[client_number]
-        self.client_info_label.setText(f"Client Name: {client.first_name}, "
+        self.client_info_label.setText(f"Client Name: {client.first_name} "
                                        +f"{client.last_name}")
 
 
@@ -78,7 +81,7 @@ class ClientLookupWindow(LookupWindow):
         ## QTableWidgetItems for each of the columns
         row = 0
 
-        for account in self.accounts:
+        for account in self.accounts.values():
             if account.client_number == client_number:
                 self.account_table.insertRow(row)
 
@@ -94,7 +97,7 @@ class ClientLookupWindow(LookupWindow):
                 balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
 
                 ## date created (column 2)
-                date_created_item = QTableWidgetItem(str(account.date_created))
+                date_created_item = QTableWidgetItem(str(account._date_created))
                 date_created_item.setTextAlignment(Qt.AlignCenter)
 
                 ## account type (column 3)
@@ -112,14 +115,14 @@ class ClientLookupWindow(LookupWindow):
         self.account_table.resizeColumnsToContents()
 
 
-    @Slot
-    def on_text_changed(self) -> None:
-        """
-        
-        """
+    # @Slot
+    # def on_text_changed(self) -> None:
+    #     """
 
-    @Slot
-    def on_select_account(self) -> None:
-        """
-        
-        """
+    #     """
+
+    # @Slot
+    # def on_select_account(self) -> None:
+    #     """
+
+    #     """
