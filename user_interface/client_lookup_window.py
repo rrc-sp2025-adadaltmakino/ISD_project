@@ -3,7 +3,7 @@ __version__ = "1.0.0"
 __credits__ = "Amanda Dadalt Makino"
 
 from PySide6.QtWidgets import QTableWidgetItem, QMessageBox
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Slot
 
 from ui_superclasses.lookup_window import LookupWindow
 from user_interface.account_details_window import AccountDetailsWindow
@@ -36,17 +36,10 @@ class ClientLookupWindow(LookupWindow):
         Slot for the look_up button clicked signal,
         Displays client data on the screen.
         """
-        # obtain Client object from the client_listing:dict based on
-        #the client_number entered into the client_number_edit widget
-        # retrieve BankAccount records associated with the Client and
-        #displays details of records in the account_table
-
-        # if no Client record matches the client_number entered
-        # a QMessageBox will display 
 
         ## obtain client number into the client_number_edit widget 
         ## try convert to int, except issue in QMsgBox
-        
+
         client_number_text = self.client_number_edit.text().strip()
 
         try:
@@ -70,6 +63,54 @@ class ClientLookupWindow(LookupWindow):
 
             self.reset_display()
             return
+
+
+        ## obtain corresponding value (Client object) from the dict
+        ## set the client_info_label to hte Client Name
+
+        client = self.client_listing[client_number]
+        self.client_info_label.setText(f"Client Name: {client.first_name}, "
+                                       +f"{client.last_name}")
+
+
+        ## iterate thru the accounts dict values
+        ## if client_number in Client match the one in BankAccount - add row
+        ## QTableWidgetItems for each of the columns
+        row = 0
+
+        for account in self.accounts:
+            if account.client_number == client_number:
+                self.account_table.insertRow(row)
+
+
+                ## create QTableWidgets for each of the account table columns
+                ## account number (column 0)
+                account_number_item = QTableWidgetItem(str(account.account_number))
+                account_number_item.setTextAlignment(Qt.AlignCenter)
+
+                ## balance (column 1)
+                balance_item_string = f"${account.balance:.2f}"
+                balance_item = QTableWidgetItem(balance_item_string)
+                balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+
+                ## date created (column 2)
+                date_created_item = QTableWidgetItem(str(account.date_created))
+                date_created_item.setTextAlignment(Qt.AlignCenter)
+
+                ## account type (column 3)
+                account_type_item = QTableWidgetItem(account.__class__.__name__)
+                account_type_item.setTextAlignment(Qt.AlignCenter)
+
+                ## place items in table
+                self.account_table.setItem(row, 0, account_number_item)
+                self.account_table.setItem(row, 1, balance_item)
+                self.account_table.setItem(row, 2, date_created_item)
+                self.account_table.setItem(row, 3, account_type_item)
+
+                row += 1
+
+        self.account_table.resizeColumnsToContents()
+
 
     @Slot
     def on_text_changed(self) -> None:
