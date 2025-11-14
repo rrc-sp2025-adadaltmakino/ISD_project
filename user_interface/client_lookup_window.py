@@ -28,13 +28,13 @@ class ClientLookupWindow(LookupWindow):
         self.accounts = accounts
 
         # establishing connnections
-        self.lookup_button.clicked.connect(self.on_lookup_client)
-        self.client_number_edit.textChanged.connect(self.on_text_changed)
-        self.account_table.cellClicked.connect(self.on_select_account)
+        self.lookup_button.clicked.connect(self.__on_lookup_client)
+        self.client_number_edit.textChanged.connect(self.__on_text_changed)
+        self.account_table.cellClicked.connect(self.__on_select_account)
 
 
     @Slot()
-    def on_lookup_client(self) -> None:
+    def __on_lookup_client(self) -> None:
         """
         Slot for the look_up button clicked signal,
         Displays client data on the screen.
@@ -116,7 +116,7 @@ class ClientLookupWindow(LookupWindow):
 
 
     @Slot()
-    def on_text_changed(self) -> None:
+    def __on_text_changed(self) -> None:
         """
         Clear all bank account records from display.
         """
@@ -124,7 +124,7 @@ class ClientLookupWindow(LookupWindow):
         self.account_table.setRowCount(0)
 
     @Slot(int, int)
-    def on_select_account(self, row: int, column: int) -> None:
+    def __on_select_account(self, row: int, column: int) -> None:
         """
         Identify the account selected and transfer control to the
         Account Details window.
