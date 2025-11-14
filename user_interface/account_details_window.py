@@ -40,7 +40,53 @@ class AccountDetailsWindow(DetailsWindow):
 
 
     def __on_apply_transaction(self):
-        pass
+        """
+        Attempt to perform a transaction (deposit or withdraw) using
+        the amount entered into the corresponding bank account.
+        """
+        # try/except to convert amount into the widget to float -> QMsgBox
+        # if the conversion fails
+
+        amount_string = self.transaction_amount_edit.text().strip()
+
+        try:
+            amount = float(amount_string)
+        except ValueError:
+            QMessageBox.information(self, 
+                                    "Invalid Data", "Amount must be numeric.")
+            self.transaction_amount_edit.setFocus()
+            return
+
+        # try/except to evaluate self.sender() wether the user clicked
+        # on the deposit button or withdraw button
+
+        sender = self.sender()
+        transaction_type = ""
+
+        try:
+            if sender is self.deposit_button:
+                transaction_type = "Deposit"
+                self.account.deposit(amount)
+
+            elif sender is self.withdraw_button:
+                transaction_type = "Withdraw"
+                self.account.withdraw(amount)
+
+            # update balance
+            self.balance_label.setText(f"${self.account.balance:.2f}")
+
+            # set transaction amount edit to an empty string and setFocus
+            self.transaction_amount_edit.setText("")
+            self.transaction_amount_edit.setFocus()
+
+        except Exception as e:
+            QMessageBox.information(self, {transaction_type}, str({e}))
+
+            self.transaction_amount_edit.setText("")
+            self.transaction_amount_edit.setFocus()
 
     def __on_exit(self):
-        pass
+        """
+        Close the QDialog returning the user to the ClientLookupWindow.
+        """
+        self.close()
