@@ -81,3 +81,12 @@ I used the attach() method to connect the observer to the appropriate bank
 account, and the notify() method when a big event occurs (large transaction
 or low balance) to automatically send a notification to the client through
 their email.
+
+## Event-Driven Programming
+
+Event-Driven Programming was implemented in this assignment by making the
+program react to events like buttons, clicks, deposit/withdraw, and signals.
+It is based on user interaction, for example, when the user clicks a button
+and that interaction triggers a function that will search for the client. All
+of this was achieved by using programming paradigms, Qt Framework, and PySide6
+along with its widgets.

@@ -88,7 +88,8 @@ class ClientLookupWindow(LookupWindow):
 
                 ## create QTableWidgets for each of the account table columns
                 ## account number (column 0)
-                account_number_item = QTableWidgetItem(str(account.account_number))
+                account_number_item = QTableWidgetItem(
+                    str(account.account_number))
                 account_number_item.setTextAlignment(Qt.AlignCenter)
 
                 ## balance (column 1)
@@ -97,11 +98,13 @@ class ClientLookupWindow(LookupWindow):
                 balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
 
                 ## date created (column 2)
-                date_created_item = QTableWidgetItem(str(account._date_created))
+                date_created_item = QTableWidgetItem(
+                    str(account._date_created))
                 date_created_item.setTextAlignment(Qt.AlignCenter)
 
                 ## account type (column 3)
-                account_type_item = QTableWidgetItem(account.__class__.__name__)
+                account_type_item = QTableWidgetItem(
+                    account.__class__.__name__)
                 account_type_item.setTextAlignment(Qt.AlignCenter)
 
                 ## place items in table
@@ -181,7 +184,7 @@ class ClientLookupWindow(LookupWindow):
             QMessageBox.information(self, error_title, error_message)
 
     @Slot(BankAccount)
-    def __update_data(self, account: BankAccount):
+    def __update_data(self, account: BankAccount) -> None:
         """
         Update bank account balance according to the value when
         receiving a signal from AccountDetailsWindow.

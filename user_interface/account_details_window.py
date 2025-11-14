@@ -1,6 +1,6 @@
 __author__ = "ACE Faculty"
 __version__ = "1.0.0"
-__credits__ = ""
+__credits__ = "Amanda Dadalt Makino"
 
 from ui_superclasses.details_window import DetailsWindow
 from PySide6.QtWidgets import QMessageBox
@@ -10,7 +10,8 @@ import copy
 
 class AccountDetailsWindow(DetailsWindow):
     """
-    A class used to display account details and perform bank account transactions.
+    A class used to display account details and perform bank account 
+    transactions.
     """
 
     ##Signal
@@ -20,7 +21,8 @@ class AccountDetailsWindow(DetailsWindow):
 
     def __init__(self, account: BankAccount) -> None:
         """
-        Initializes a new instance of the ExtendedAccountDetails window.
+        Initializes a new instance of the ExtendedAccountDetails 
+        window.
         Args:
             account: The bank account to be displayed.
         Returns:
@@ -45,7 +47,7 @@ class AccountDetailsWindow(DetailsWindow):
         self.exit_button.clicked.connect(self.__on_exit)
 
 
-    def __on_apply_transaction(self):
+    def __on_apply_transaction(self) -> None:
         """
         Attempt to perform a transaction (deposit or withdraw) using
         the amount entered into the corresponding bank account.
@@ -58,7 +60,7 @@ class AccountDetailsWindow(DetailsWindow):
         try:
             amount = float(amount_string)
         except ValueError:
-            QMessageBox.information(self, 
+            QMessageBox.information(self,
                                     "Invalid Data", "Amount must be numeric.")
             self.transaction_amount_edit.setFocus()
             return
@@ -89,13 +91,14 @@ class AccountDetailsWindow(DetailsWindow):
             self.transaction_amount_edit.setFocus()
 
         except Exception as e:
-            QMessageBox.information(self, transaction_type, str({e}))
+            QMessageBox.information(self, f"{transaction_type} Failed",
+                                    str({e}))
 
             self.transaction_amount_edit.setText("")
             self.transaction_amount_edit.setFocus()
 
 
-    def __on_exit(self):
+    def __on_exit(self) -> None:
         """
         Close the QDialog returning the user to the ClientLookupWindow.
         """
