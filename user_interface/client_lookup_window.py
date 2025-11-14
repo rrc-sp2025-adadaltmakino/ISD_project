@@ -30,7 +30,7 @@ class ClientLookupWindow(LookupWindow):
         # establishing connnections
         self.lookup_button.clicked.connect(self.on_lookup_client)
         self.client_number_edit.textChanged.connect(self.on_text_changed)
-        #self.account_table.cellClicked.connect(self.on_select_account)
+        self.account_table.cellClicked.connect(self.on_select_account)
 
 
     @Slot()
@@ -78,7 +78,7 @@ class ClientLookupWindow(LookupWindow):
 
         ## iterate thru the accounts dict values
         ## if client_number in Client match the one in BankAccount - add row
-        ## QTableWidgetItems for each of the columns
+        # QTableWidgetItems for each of the columns
         row = 0
 
         for account in self.accounts.values():
@@ -123,8 +123,53 @@ class ClientLookupWindow(LookupWindow):
         ## use setRowCount w an argument of 0
         self.account_table.setRowCount(0)
 
-    # @Slot()
-    # def on_select_account(self) -> None:
-    #     """
+    @Slot(int, int)
+    def on_select_account(self, row: int, column: int) -> None:
+        """
+        Identify the account selected and transfer control to the
+        Account Details window.
 
-    #     """
+        Args:
+            row(int): Row of the clicked cell
+            column(int): Column  of the clicked cell
+        """
+
+        ERRORS = {
+            "invalid": ("Invalid Selection", 
+                        "Please select a valid record."),
+            "no_account": ("No Bank Account", 
+                           "Bank Account selected does not exist.")
+        }
+
+        error_title = None
+        error_message = None
+
+        selected_item = self.account_table.item(row, 0)
+
+        if selected_item is None:
+            error_title, error_message = ERRORS["invalid"]
+
+        else:
+            account_text = selected_item.text().strip()
+
+            if account_text == "":
+                error_title, error_message = ERRORS["no_account"]
+
+            else:
+                try:
+                    account_number = int(account_text)
+                except ValueError:
+                    error_title, error_message = ERRORS["invalid"]
+
+                else:
+                    if account_number in self.accounts:
+                        account_object = self.accounts[account_number]
+
+                        details_window = AccountDetailsWindow(account_object)
+                        details_window.exec()
+                        return
+                    else:
+                        error_title, error_message = ERRORS["no_account"]
+
+        if error_title:
+            QMessageBox.information(self, error_title, error_message)
