@@ -39,6 +39,15 @@ This assignment will help to reinforce learning of the Module 3 concepts of:
 - Strategy Pattern
 - Observer Pattern
 
+Assignment 04:
+
+This assignment will help to reinforce learning of the Module 3 concepts of:
+
+- Programming Paradigms
+- PySide6
+- Qt Framework
+- PySide6 Widgets
+
 ## Encapsulation
 
 Encapsulation was achieved by defining attributes like 'account_number',
@@ -72,3 +81,12 @@ I used the attach() method to connect the observer to the appropriate bank
 account, and the notify() method when a big event occurs (large transaction
 or low balance) to automatically send a notification to the client through
 their email.
+
+## Event-Driven Programming
+
+Event-Driven Programming was implemented in this assignment by making the
+program react to events like buttons, clicks, deposit/withdraw, and signals.
+It is based on user interaction, for example, when the user clicks a button
+and that interaction triggers a function that will search for the client. All
+of this was achieved by using programming paradigms, Qt Framework, and PySide6
+along with its widgets.
