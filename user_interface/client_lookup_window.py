@@ -8,7 +8,7 @@ from PySide6.QtCore import Qt, Slot
 from ui_superclasses.lookup_window import LookupWindow
 from user_interface.account_details_window import AccountDetailsWindow
 from user_interface.manage_data import load_data
-from user_interface.manage_data import update_data, manage_data
+from user_interface.manage_data import update_data
 from bank_account.bank_account import BankAccount
 
 class ClientLookupWindow(LookupWindow):
@@ -169,7 +169,7 @@ class ClientLookupWindow(LookupWindow):
 
                         # CONNECT SIGNAL
                         details_window.balance_updated.connect(
-                            self.updated_data)
+                            self._ClientLookupWindow__update_data)
 
                         details_window.exec()
 
@@ -180,7 +180,7 @@ class ClientLookupWindow(LookupWindow):
         if error_title:
             QMessageBox.information(self, error_title, error_message)
 
-    @Slot()
+    @Slot(BankAccount)
     def __update_data(self, account: BankAccount):
         """
         Update bank account balance according to the value when
@@ -204,4 +204,4 @@ class ClientLookupWindow(LookupWindow):
 
         self.accounts[account.account_number] = account
 
-        manage_data.update_data(account)
+        update_data(account)
