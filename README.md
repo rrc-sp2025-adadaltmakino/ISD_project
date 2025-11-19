@@ -41,12 +41,23 @@ This assignment will help to reinforce learning of the Module 3 concepts of:
 
 Assignment 04:
 
-This assignment will help to reinforce learning of the Module 3 concepts of:
+This assignment will help to reinforce learning of the Module 4 concepts of:
 
 - Programming Paradigms
 - PySide6
 - Qt Framework
 - PySide6 Widgets
+
+Assignment 05:
+
+This assignment will help to reinforce learning of the Module 5 concepts of:
+
+- Algorithms
+- Sphinx
+- Generate help files
+- Creating Exe
+- PyInstaller
+- Inno Setup
 
 ## Encapsulation
 

@@ -46,7 +46,7 @@ class AccountDetailsWindow(DetailsWindow):
         self.withdraw_button.clicked.connect(self.__on_apply_transaction)
         self.exit_button.clicked.connect(self.__on_exit)
 
-
+    @Slot()
     def __on_apply_transaction(self) -> None:
         """
         Attempt to perform a transaction (deposit or withdraw) using
@@ -97,7 +97,7 @@ class AccountDetailsWindow(DetailsWindow):
             self.transaction_amount_edit.setText("")
             self.transaction_amount_edit.setFocus()
 
-
+    @Slot()
     def __on_exit(self) -> None:
         """
         Close the QDialog returning the user to the ClientLookupWindow.
