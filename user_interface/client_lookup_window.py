@@ -23,9 +23,7 @@ class ClientLookupWindow(LookupWindow):
         super().__init__()
 
         # call load_data() and set attribute to the value
-        client_listing, accounts = load_data()
-        self.client_listing = client_listing
-        self.accounts = accounts
+        self._client_listing, self._accounts = load_data()
 
         # establishing connnections
         self.lookup_button.clicked.connect(self.__on_lookup_client)
@@ -93,7 +91,7 @@ class ClientLookupWindow(LookupWindow):
                 account_number_item.setTextAlignment(Qt.AlignCenter)
 
                 ## balance (column 1)
-                balance_item_string = f"${account.balance:.2f}"
+                balance_item_string = f"${account.balance:,.2f}"
                 balance_item = QTableWidgetItem(balance_item_string)
                 balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
 
@@ -172,7 +170,7 @@ class ClientLookupWindow(LookupWindow):
 
                         # CONNECT SIGNAL
                         details_window.balance_updated.connect(
-                            self._ClientLookupWindow__update_data)
+                            self.__update_data)
 
                         details_window.exec()
 
@@ -200,10 +198,11 @@ class ClientLookupWindow(LookupWindow):
 
             # compare account number with row account number (if they match)
             if row_account_number == account.account_number:
+
+                balance_item = QTableWidgetItem(f"${account.balance:,.2f}")
+                balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 # update the value of the second column
-                self.account_table.setItem(
-                    row, 1, QTableWidgetItem(f"${account.balance:.2f}")
-                )
+                self.account_table.setItem(row, 1, balance_item)
 
         self.accounts[account.account_number] = account
 
