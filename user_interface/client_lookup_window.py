@@ -60,7 +60,7 @@ class ClientLookupWindow(LookupWindow):
         ## check if client_number entered exists in key (client_listing)
         ## if not: display QMsgBox
 
-        if client_number not in self.client_listing:
+        if client_number not in self._client_listing:
             QMessageBox.information(self, "Not Found",
                                     f"Client Number: {client_number} "
                                     + "not found.")
@@ -72,7 +72,7 @@ class ClientLookupWindow(LookupWindow):
         ## obtain corresponding value (Client object) from the dict
         ## set the client_info_label to hte Client Name
 
-        client = self.client_listing[client_number]
+        client = self._client_listing[client_number]
         self.client_info_label.setText(f"Client Name: {client.first_name} "
                                        +f"{client.last_name}")
 
@@ -82,7 +82,7 @@ class ClientLookupWindow(LookupWindow):
         # QTableWidgetItems for each of the columns
         row = 0
 
-        for account in self.accounts.values():
+        for account in self._accounts.values():
             if account.client_number == client_number:
                 self.account_table.insertRow(row)
 
@@ -214,7 +214,7 @@ class ClientLookupWindow(LookupWindow):
         update_data(account)
 
     #### ASSIGNMENT 05 ###
-    @Slot
+    @Slot()
     def __on_filter_clicked(self) -> None:
         """
         Obtain user-defined filter criteria from the filter_combo_box 
@@ -256,7 +256,7 @@ class ClientLookupWindow(LookupWindow):
             self.__toggle_filter(False)
             self.filter_button.setText("Apply Filter")
 
-    @Slot
+    @Slot()
     def __toggle_filter(self, filter_on: bool) -> None:
         """
         Toggles the display of the filter widgets to indicate to the
