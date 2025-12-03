@@ -118,6 +118,8 @@ class ClientLookupWindow(LookupWindow):
 
         self.account_table.resizeColumnsToContents()
 
+        #Assignment5
+        self.__toggle_filter(False)
 
     @Slot()
     def __on_text_changed(self) -> None:
