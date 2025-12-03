@@ -257,4 +257,43 @@ class ClientLookupWindow(LookupWindow):
     @Slot
     def __toggle_filter(self, filter_on: bool) -> None:
         """
+        Toggles the display of the filter widgets to indicate to the
+        user whether or not filtering is currently taking place.
+
+        Args:
+            filter_on(bool): True if filtering is active, False 
+            if reset.
         """
+
+        # enable filter button
+        self.filter_button.setEnabled(True)
+
+        if filter_on:
+            # filter on
+            self.filter_button.setText("Reset")
+
+            # disable filter inputs
+            self.filter_combo_box.setEnabled(False)
+            self.filter_edit.setEnabled(False)
+
+            # label indicating filter is on
+            self.filter_label.setText("Data is Currently Filtered")
+
+        else:
+            # filter off
+            self.filter_button.setText("Apply Filter")
+
+            # enable filter input
+            self.filter_combo_box.setEnabled(True)
+            self.filter_edit.setEnabled(True)
+
+            # reset widget
+            self.filter_edit.setText("")
+            self.filter_combo_box.setCurrentIndex(0)
+
+            row_count = self.account_table.rowCount()
+            for row in range (row_count):
+                self.account_table.setRowHidden(row, False)
+
+            # filtering off label
+            self.filter_label.setText("Data is Not Currently Filtered")
