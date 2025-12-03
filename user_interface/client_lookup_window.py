@@ -29,6 +29,9 @@ class ClientLookupWindow(LookupWindow):
         self.lookup_button.clicked.connect(self.__on_lookup_client)
         self.client_number_edit.textChanged.connect(self.__on_text_changed)
         self.account_table.cellClicked.connect(self.__on_select_account)
+        #Assignment 5
+        self.filter_button.clicked.connect(self.__on_filter_clicked)
+
 
 
     @Slot()
@@ -207,3 +210,51 @@ class ClientLookupWindow(LookupWindow):
         self.accounts[account.account_number] = account
 
         update_data(account)
+
+    #### ASSIGNMENT 05 ###
+    @Slot
+    def __on_filter_clicked(self) -> None:
+        """
+        Obtain user-defined filter criteria from the filter_combo_box 
+        and the filter_edit widgets.
+        """
+
+        applying_filter = self.filter_button.text() == "Apply Filter"
+
+        # input (colletction + criteria)
+        if applying_filter:
+            column_index = self.filter_combo_box.currentIndex()
+            search_text = self.filter_edit.text().strip().lower()
+
+            # process (iteration)
+            row_count = self.account_table.rowCount()
+
+            for row in range(row_count):
+                item = self.account_table.item(row, column_index)
+
+                match = False
+
+                if item is not None:
+                    cell_value = item.text().strip().lower()
+
+                    if search_text in cell_value:
+                        match = True
+
+                # output (a new collection containing only those who meet criteria)
+                self.account_table.setRowHidden(row, not match)
+
+            self.__toggle_filter(True)
+            self.filter_button.setText("Reset")
+
+        else:
+            row_count= self.account_table.rowCount()
+            for row in range(row_count):
+                self.account_table.setRowHidden(row, False)
+
+            self.__toggle_filter(False)
+            self.filter_button.setText("Apply Filter")
+
+    @Slot
+    def __toggle_filter(self, filter_on: bool) -> None:
+        """
+        """
