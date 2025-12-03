@@ -21,14 +21,14 @@ class InvestmentAccount(BankAccount):
         Initializes class attributes to argument values.
 
         Args:
-            - account_number(int):  An integer value representing the 
+            account_number(int):  An integer value representing the 
             bank account number.
-            - client_number(int):  An integer value representing the 
+            client_number(int):  An integer value representing the 
             client number representing the account holder.
-            - balance(float): A float value representing the current 
+            balance(float): A float value representing the current 
             balance of the bank account.
-            # date_created(date): Date representing the date created.
-            - management_fee(float):A float value representing the 
+            date_created(date): Date representing the date created.
+            management_fee(float):A float value representing the 
             management fee.
         """
         super().__init__(account_number, client_number, balance, date_created)

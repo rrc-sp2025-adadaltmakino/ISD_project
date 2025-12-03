@@ -41,12 +41,23 @@ This assignment will help to reinforce learning of the Module 3 concepts of:
 
 Assignment 04:
 
-This assignment will help to reinforce learning of the Module 3 concepts of:
+This assignment will help to reinforce learning of the Module 4 concepts of:
 
 - Programming Paradigms
 - PySide6
 - Qt Framework
 - PySide6 Widgets
+
+Assignment 05:
+
+This assignment will help to reinforce learning of the Module 5 concepts of:
+
+- Algorithms
+- Sphinx
+- Generate help files
+- Creating Exe
+- PyInstaller
+- Inno Setup
 
 ## Encapsulation
 
@@ -65,7 +76,7 @@ not enough information available at the superclass level, and when it was
 inhereted in the subclasses the polymorphism was implemented by using that
 method to behave different ways according to each subclass requirements.
 
-## Steategy Pattern
+## Strategy Pattern
 
 The strategy pattern was implemented in my bank account classes/subclasses
 by creating different strategies for each type of account. For example, the
@@ -90,3 +101,12 @@ It is based on user interaction, for example, when the user clicks a button
 and that interaction triggers a function that will search for the client. All
 of this was achieved by using programming paradigms, Qt Framework, and PySide6
 along with its widgets.
+
+## Filtering
+
+Filtering was implemented in this assignment by setting up the program to search
+for and display only the information that matches the speciific criteria. For
+example, when looking up a client, the application can apply filters for their
+Account number, Balance, Date created, and Account type. This was achieved by
+using search functions that will scan through the CSV files and return the
+appropriate data.

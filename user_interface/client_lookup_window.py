@@ -23,14 +23,15 @@ class ClientLookupWindow(LookupWindow):
         super().__init__()
 
         # call load_data() and set attribute to the value
-        client_listing, accounts = load_data()
-        self.client_listing = client_listing
-        self.accounts = accounts
+        self._client_listing, self._accounts = load_data()
 
         # establishing connnections
         self.lookup_button.clicked.connect(self.__on_lookup_client)
         self.client_number_edit.textChanged.connect(self.__on_text_changed)
         self.account_table.cellClicked.connect(self.__on_select_account)
+        #Assignment 5
+        self.filter_button.clicked.connect(self.__on_filter_clicked)
+
 
 
     @Slot()
@@ -59,7 +60,7 @@ class ClientLookupWindow(LookupWindow):
         ## check if client_number entered exists in key (client_listing)
         ## if not: display QMsgBox
 
-        if client_number not in self.client_listing:
+        if client_number not in self._client_listing:
             QMessageBox.information(self, "Not Found",
                                     f"Client Number: {client_number} "
                                     + "not found.")
@@ -71,7 +72,7 @@ class ClientLookupWindow(LookupWindow):
         ## obtain corresponding value (Client object) from the dict
         ## set the client_info_label to hte Client Name
 
-        client = self.client_listing[client_number]
+        client = self._client_listing[client_number]
         self.client_info_label.setText(f"Client Name: {client.first_name} "
                                        +f"{client.last_name}")
 
@@ -81,7 +82,7 @@ class ClientLookupWindow(LookupWindow):
         # QTableWidgetItems for each of the columns
         row = 0
 
-        for account in self.accounts.values():
+        for account in self._accounts.values():
             if account.client_number == client_number:
                 self.account_table.insertRow(row)
 
@@ -93,7 +94,7 @@ class ClientLookupWindow(LookupWindow):
                 account_number_item.setTextAlignment(Qt.AlignCenter)
 
                 ## balance (column 1)
-                balance_item_string = f"${account.balance:.2f}"
+                balance_item_string = f"${account.balance:,.2f}"
                 balance_item = QTableWidgetItem(balance_item_string)
                 balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
 
@@ -117,6 +118,8 @@ class ClientLookupWindow(LookupWindow):
 
         self.account_table.resizeColumnsToContents()
 
+        #Assignment5
+        self.__toggle_filter(False)
 
     @Slot()
     def __on_text_changed(self) -> None:
@@ -172,7 +175,7 @@ class ClientLookupWindow(LookupWindow):
 
                         # CONNECT SIGNAL
                         details_window.balance_updated.connect(
-                            self._ClientLookupWindow__update_data)
+                            self.__update_data)
 
                         details_window.exec()
 
@@ -200,11 +203,99 @@ class ClientLookupWindow(LookupWindow):
 
             # compare account number with row account number (if they match)
             if row_account_number == account.account_number:
+
+                balance_item = QTableWidgetItem(f"${account.balance:,.2f}")
+                balance_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 # update the value of the second column
-                self.account_table.setItem(
-                    row, 1, QTableWidgetItem(f"${account.balance:.2f}")
-                )
+                self.account_table.setItem(row, 1, balance_item)
 
         self.accounts[account.account_number] = account
 
         update_data(account)
+
+    #### ASSIGNMENT 05 ###
+    @Slot()
+    def __on_filter_clicked(self) -> None:
+        """
+        Obtain user-defined filter criteria from the filter_combo_box 
+        and the filter_edit widgets.
+        """
+
+        applying_filter = self.filter_button.text() == "Apply Filter"
+
+        # input (colletction + criteria)
+        if applying_filter:
+            column_index = self.filter_combo_box.currentIndex()
+            search_text = self.filter_edit.text().strip().lower()
+
+            # process (iteration)
+            row_count = self.account_table.rowCount()
+
+            for row in range(row_count):
+                item = self.account_table.item(row, column_index)
+
+                match = False
+
+                if item is not None:
+                    cell_value = item.text().strip().lower()
+
+                    if search_text in cell_value:
+                        match = True
+
+                # output (a new collection containing only those who meet criteria)
+                self.account_table.setRowHidden(row, not match)
+
+            self.__toggle_filter(True)
+            self.filter_button.setText("Reset")
+
+        else:
+            row_count= self.account_table.rowCount()
+            for row in range(row_count):
+                self.account_table.setRowHidden(row, False)
+
+            self.__toggle_filter(False)
+            self.filter_button.setText("Apply Filter")
+
+    @Slot()
+    def __toggle_filter(self, filter_on: bool) -> None:
+        """
+        Toggles the display of the filter widgets to indicate to the
+        user whether or not filtering is currently taking place.
+
+        Args:
+            filter_on(bool): True if filtering is active, False 
+            if reset.
+        """
+
+        # enable filter button
+        self.filter_button.setEnabled(True)
+
+        if filter_on:
+            # filter on
+            self.filter_button.setText("Reset")
+
+            # disable filter inputs
+            self.filter_combo_box.setEnabled(False)
+            self.filter_edit.setEnabled(False)
+
+            # label indicating filter is on
+            self.filter_label.setText("Data is Currently Filtered")
+
+        else:
+            # filter off
+            self.filter_button.setText("Apply Filter")
+
+            # enable filter input
+            self.filter_combo_box.setEnabled(True)
+            self.filter_edit.setEnabled(True)
+
+            # reset widget
+            self.filter_edit.setText("")
+            self.filter_combo_box.setCurrentIndex(0)
+
+            row_count = self.account_table.rowCount()
+            for row in range (row_count):
+                self.account_table.setRowHidden(row, False)
+
+            # filtering off label
+            self.filter_label.setText("Data is Not Currently Filtered")

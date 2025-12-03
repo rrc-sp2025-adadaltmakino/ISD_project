@@ -20,14 +20,14 @@ class SavingsAccount(BankAccount):
         Initializes class attributes to argument values.
 
         Args:
-            - account_number(int):  An integer value representing the 
+            account_number(int):  An integer value representing the 
             bank account number.
-            - client_number(int):  An integer value representing the 
+            client_number(int):  An integer value representing the 
             client number representing the account holder.
-            - balance(float): A float value representing the current 
+            balance(float): A float value representing the current 
             balance of the bank account.
-            # date_created(date): Date representing the date created.
-            - minimum_balance (float): A float representing the minimum
+            date_created(date): Date representing the date created.
+            minimum_balance (float): A float representing the minimum
             account balance.
         """
 
