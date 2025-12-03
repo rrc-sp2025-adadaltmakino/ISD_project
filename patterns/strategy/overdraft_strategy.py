@@ -19,9 +19,9 @@ class OverdraftStrategy(ServiceChargeStrategy):
         Initializes class attributes to argument values.
 
         Args:
-            - overdraft_limit(float): Value that represents the
+            overdraft_limit(float): Value that represents the
             overdraft limit.
-            - overdraft_rate(float): Value that represents the 
+            overdraft_rate(float): Value that represents the 
             overdraft rate.
         """
         self.__overdraft_limit = overdraft_limit

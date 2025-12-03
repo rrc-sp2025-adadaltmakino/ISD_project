@@ -23,10 +23,9 @@ class AccountDetailsWindow(DetailsWindow):
         """
         Initializes a new instance of the ExtendedAccountDetails 
         window.
+
         Args:
-            account: The bank account to be displayed.
-        Returns:
-            None
+            account(BankAccount): The bank account to be displayed.
         """
         super().__init__()
 

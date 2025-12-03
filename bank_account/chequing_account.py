@@ -21,18 +21,18 @@ class ChequingAccount(BankAccount):
         Initializes class attributes to argument values.
 
         Args:
-            - overdraft_limit(float): The maximum amount a balance can 
+            overdraft_limit(float): The maximum amount a balance can 
             be overdrawn (below 0.00) before overdraft fees are 
             applied.
-            - overdraft_rate(float): The rate to which overdraft fees 
+            overdraft_rate(float): The rate to which overdraft fees 
             will be applied.
-            - account_number(int):  An integer value representing the 
+            account_number(int):  An integer value representing the 
             bank account number.
-            - client_number(int):  An integer value representing the 
+            client_number(int):  An integer value representing the 
             client number representing the account holder.
-            - balance(float): A float value representing the current 
+            balance(float): A float value representing the current 
             balance of the bank account.
-            # date_created(date): Date representing the date created.
+            date_created(date): Date representing the date created.
         """
 
         super().__init__(account_number, client_number, balance, date_created)

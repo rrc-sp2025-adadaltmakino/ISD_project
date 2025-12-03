@@ -21,8 +21,8 @@ class ManagementFeeStrategy(ServiceChargeStrategy):
         Initializes class attributes to argument values.
 
         Args:
-            - date_created(date): The date the account was created.
-            - management_fee(float): The management fee amount applied.
+            date_created(date): The date the account was created.
+            management_fee(float): The management fee amount applied.
         """
 
         self.__date_created = date_created
